@@ -1,0 +1,13 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #e8e8e8;
+  min-height: 100%;
+}
+
+button.primary {
+  background-color: #5588a3;
+  color: white;
+}
