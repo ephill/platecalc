@@ -1,12 +1,6 @@
 <script>
+  import { userConfig } from "./store.js";
   const weights = [45, 35, 25, 15, 10, 5, 2.5, 1.25];
-
-  let targetWeight = 75;
-
-  let userConfig = {
-    barWeight: 45,
-    numPlates: [2, 2, 2, 2, 2, 2, 2, 2]
-  };
 
   let result = undefined;
   let resultRemainingWeight = undefined;
@@ -14,10 +8,10 @@
   let modalClass = "modal";
 
   function calculate() {
-    if (targetWeight) {
-      let remainingWeight = targetWeight - userConfig.barWeight;
+    if ($userConfig.targetWeight) {
+      let remainingWeight = $userConfig.targetWeight - $userConfig.barWeight;
       let currentPlateIndex = 0;
-      let currentNumPlates = userConfig.numPlates.slice();
+      let currentNumPlates = $userConfig.numPlates.slice();
       let usedPlates = {};
 
       while (remainingWeight > 0 && currentPlateIndex < weights.length) {
@@ -60,7 +54,7 @@
 </style>
 
 <svelte:head>
-  <title>PlateCalc</title>
+  <title>platecalc</title>
 </svelte:head>
 
 <div class="container">
@@ -174,13 +168,16 @@
   <div class="field">
     <label class="label">Target Weight</label>
     <div class="control">
-      <input class="input" type="number" bind:value={targetWeight} />
+      <input
+        class="input"
+        type="number"
+        bind:value={$userConfig.targetWeight} />
     </div>
   </div>
   <div class="field">
     <label class="label">Bar Weight (lb)</label>
     <div class="control">
-      <input class="input" type="number" bind:value={userConfig.barWeight} />
+      <input class="input" type="number" bind:value={$userConfig.barWeight} />
     </div>
   </div>
   <div class="columns is-multiline">
@@ -192,7 +189,7 @@
             <input
               class="input"
               type="number"
-              bind:value={userConfig.numPlates[i]} />
+              bind:value={$userConfig.numPlates[i]} />
           </div>
         </div>
       </div>
