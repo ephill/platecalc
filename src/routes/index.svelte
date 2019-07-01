@@ -214,7 +214,11 @@
             </tr>
           </thead>
           <tbody>
-            {#each Object.keys(result) as weight}
+            {#each Object.keys(result).sort((a, b) => {
+              const an = parseFloat(a);
+              const bn = parseFloat(b);
+              return b - a;
+            }) as weight}
               <tr>
                 <td>{weight}</td>
                 <td>{result[weight]}</td>
